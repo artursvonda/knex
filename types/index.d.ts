@@ -410,8 +410,6 @@ declare namespace Knex {
     | Knex.Ref<any, any>
     | Dict<keyof TRecord>;
 
-  type TableDescriptor = string | Knex.Raw | Knex.QueryBuilder;
-
   type Lookup<TRegistry extends {}, TKey extends string, TDefault = never> =
     TKey extends keyof TRegistry ?
       TRegistry[TKey] :
@@ -435,11 +433,15 @@ declare namespace Knex {
     update: TUpdate,
   };
 
+  type UnknownTable = any
+
   type TableNames = keyof Tables;
+
+  type TableDescriptor = TableNames | Knex.Raw | Knex.QueryBuilder;
 
   type TableInterfaceScope = keyof CompositeTableType<unknown>;
 
-  type TableType<TTable extends keyof Tables> = Tables[TTable];
+  type TableType<TTable extends TableNames> = Tables[TTable];
 
   type ResolveTableType<TCompositeTableType, TScope extends TableInterfaceScope = 'base'> = TCompositeTableType extends CompositeTableType<unknown>
     ? TCompositeTableType[TScope]

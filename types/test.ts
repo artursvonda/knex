@@ -89,6 +89,7 @@ declare module './tables' {
     users_composite: Knex.CompositeTableType<User, { insert: 'insert' }, { update: 'update' }>;
     departments_composite: Knex.CompositeTableType<Department, { insert: 'insert' }, { update: 'update' }>;
     articles_composite: Knex.CompositeTableType<Article, { insert: 'insert' }, { update: 'update' }>;
+    [table: string]: Knex.UnknownTable
   }
 }
 

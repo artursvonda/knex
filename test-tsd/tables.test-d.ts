@@ -1,4 +1,4 @@
-import Knex from '../types';
+import Knex  from '../types';
 import { clientConfig } from './common';
 import { expectType } from 'tsd';
 
@@ -51,6 +51,7 @@ declare module '../types/tables' {
       { insert: 'insert' },
       { update: 'update' }
     >;
+    [table: string]: Knex.UnknownTable
   }
 }
 
